@@ -9,7 +9,77 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          appointment_date: string
+          created_at: string | null
+          email: string
+          full_name: string
+          hospital_id: string
+          id: string
+          message: string | null
+          phone: string
+          time_slot: string
+        }
+        Insert: {
+          appointment_date: string
+          created_at?: string | null
+          email: string
+          full_name: string
+          hospital_id: string
+          id?: string
+          message?: string | null
+          phone: string
+          time_slot: string
+        }
+        Update: {
+          appointment_date?: string
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          hospital_id?: string
+          id?: string
+          message?: string | null
+          phone?: string
+          time_slot?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_hospital_id_fkey"
+            columns: ["hospital_id"]
+            isOneToOne: false
+            referencedRelation: "hospitals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      hospitals: {
+        Row: {
+          address: string
+          contact_email: string
+          created_at: string | null
+          id: string
+          name: string
+          phone: string
+        }
+        Insert: {
+          address: string
+          contact_email: string
+          created_at?: string | null
+          id?: string
+          name: string
+          phone: string
+        }
+        Update: {
+          address?: string
+          contact_email?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
