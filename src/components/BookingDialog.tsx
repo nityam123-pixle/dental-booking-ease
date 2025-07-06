@@ -37,8 +37,27 @@ import { cn } from "@/lib/utils"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { supabase, type Hospital, type InsertAppointment } from "@/lib/supabase"
+import { supabase } from "@/integrations/supabase/client"
 import { useToast } from "@/hooks/use-toast"
+
+type Hospital = {
+  id: string
+  name: string
+  address: string
+  contact_email: string
+  phone: string
+  created_at: string
+}
+
+type InsertAppointment = {
+  full_name: string
+  email: string
+  phone: string
+  hospital_id: string
+  appointment_date: string
+  time_slot: string
+  message?: string
+}
 
 const bookingSchema = z.object({
   full_name: z.string().min(2, "Name must be at least 2 characters"),
